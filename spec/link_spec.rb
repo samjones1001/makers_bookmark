@@ -14,5 +14,20 @@ describe Link do
       Link.create('http://www.mylovelywebsite.com')
       expect(Link.all).to include('http://www.mylovelywebsite.com')
     end
+
+    it 'does not add the link if it is not valid' do
+      Link.create('not a url')
+      expect(Link.all).to_not include('not a url')
+    end
+  end
+
+  describe '.is_valid?' do
+    it 'returns true if passed a vaild url' do
+      expect(Link.is_valid?('http://www.mylovelywebsite.com')).to be(true)
+    end
+
+    it 'returns false if passed an invalid url' do
+      expect(Link.is_valid?('not a url')).to be(false)
+    end
   end
 end

@@ -5,4 +5,12 @@ feature 'add links' do
     click_button('Add Link')
     expect(page).to have_content('http://www.mylovelywebsite.com')
   end
+
+  scenario 'invalid links are not added to the home page' do
+    visit('/')
+    fill_in('url', with: 'not a url')
+    click_button('Add Link')
+    expect(page).to_not have_content('not a url')
+    expect(page).to have_content('Please enter a valid url')
+  end
 end
