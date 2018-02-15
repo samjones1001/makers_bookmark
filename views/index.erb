@@ -3,3 +3,12 @@
     <li><%= link %></li>
   <% end %>
 </ul>
+
+<h5>Add New Link</h5>
+<form action="/link/new" method="post">
+  <label for="url">
+    URL:
+    <input type="text" name="url">
+  </label>
+  <input type="submit" value="Add Link">
+</form>
