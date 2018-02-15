@@ -2,14 +2,22 @@ require 'pg'
 require 'uri'
 
 class Link
-  def self.all
-    result = DatabaseConnection.query('SELECT * FROM links')
-    result.map{ |link| link['url'] }
+  attr_reader :id, :url, :title
+
+  def initialize(id, url, title)
+    @id = id
+    @url = url
+    @title = title
   end
 
-  def self.create(url)
+  def self.all
+    result = DatabaseConnection.query('SELECT * FROM links')
+    result.map{ |link| Link.new(link['id'], link['url'], link['title']) }
+  end
+
+  def self.create(url, title)
     return false unless is_valid?(url)
-    DatabaseConnection.query("INSERT INTO links (url) VALUES ('#{url}');")
+    DatabaseConnection.query("INSERT INTO links (url, title) VALUES ('#{url}', '#{title}');")
   end
 
   def self.is_valid?(url)

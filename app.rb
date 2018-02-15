@@ -13,7 +13,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/link/new' do
-    flash[:notice] = 'Please enter a valid url' unless Link.create(params['url'])
+    flash[:notice] = 'Please enter a valid url' unless Link.create(params['url'], params['title'])
     redirect '/'
   end
 

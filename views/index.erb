@@ -3,7 +3,7 @@
 <% end %>
 <ul>
   <% @links.each do |link| %>
-    <li><%= link %></li>
+    <li><a href="<%=link.url%>"><%= link.title %></a></li>
   <% end %>
 </ul>
 
@@ -12,6 +12,10 @@
   <label for="url">
     URL:
     <input type="text" name="url">
+  </label>
+  <label for="text">
+    Title:
+    <input type="text" name="title">
   </label>
   <input type="submit" value="Add Link">
 </form>
