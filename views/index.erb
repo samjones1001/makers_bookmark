@@ -4,6 +4,10 @@
 <ul>
   <% @links.each do |link| %>
     <li><a href="<%=link.url%>"><%= link.title %></a></li>
+    <form method="post">
+      <input type="hidden" name='url' value="<%=link.url%>">
+      <button type="submit" name="button" formaction="/link/delete">Delete</button>
+    </form>
   <% end %>
 </ul>
 

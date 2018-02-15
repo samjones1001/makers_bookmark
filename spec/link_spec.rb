@@ -23,13 +23,14 @@ describe Link do
     end
   end
 
-  describe '.is_valid?' do
-    it 'returns true if passed a vaild url' do
-      expect(Link.is_valid?('http://www.mylovelywebsite.com')).to be(true)
-    end
-
-    it 'returns false if passed an invalid url' do
-      expect(Link.is_valid?('not a url')).to be(false)
+  describe '.update' do
+    it 'removes a link from the list' do
+      Link.create('http://www.mylovelywebsite.com', 'Lovely Website')
+      Link.delete('http://www.mylovelywebsite.com')
+      urls = Link.all.map{ |link| link.url }
+      expect(urls).to_not include('http://www.mylovelywebsite.com')
     end
   end
+
+
 end

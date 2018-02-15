@@ -20,6 +20,11 @@ class Link
     DatabaseConnection.query("INSERT INTO links (url, title) VALUES ('#{url}', '#{title}');")
   end
 
+  def self.delete(url)
+    DatabaseConnection.query("DELETE FROM links WHERE url='#{url}';")
+  end
+
+  private
   def self.is_valid?(url)
     return true if url =~ /\A#{URI::DEFAULT_PARSER.regexp[:ABS_URI]}\z/
     false
