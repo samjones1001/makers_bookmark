@@ -17,8 +17,17 @@ class BookmarkManager < Sinatra::Base
     redirect '/'
   end
 
+  get '/link/update' do
+    @link = Link.find(params['url'])
+    erb :update
+  end
+
+  post '/link/update' do
+    Link.update(params['existing_url'], params['url'], params['title'])
+    redirect '/'
+  end
+
   post '/link/delete' do
-    p params
     Link.delete(params['url'])
     redirect '/'
   end

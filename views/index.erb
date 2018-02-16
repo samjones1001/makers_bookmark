@@ -4,9 +4,13 @@
 <ul>
   <% @links.each do |link| %>
     <li><a href="<%=link.url%>"><%= link.title %></a></li>
-    <form method="post">
+    <form  action='/link/delete' method="post">
       <input type="hidden" name='url' value="<%=link.url%>">
-      <button type="submit" name="button" formaction="/link/delete">Delete</button>
+      <button type="submit">Delete</button>
+    </form>
+    <form action="/link/update" method="get">
+      <input type="hidden" name="url" value="<%=link.url%>">
+      <button type="submit">Update</button>
     </form>
   <% end %>
 </ul>

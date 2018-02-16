@@ -1,0 +1,13 @@
+<h4>Update Link</h4>
+<form action="/link/update" method="post">
+    <input type="hidden" name='existing_url' value="<%= @link.url %>">
+    <label for="url">
+      URL:
+      <input type="text" name="url" value="<%= @link.url %>">
+    </label>
+    <label for="title">
+      Title:
+      <input type="text" name="title" value="<%= @link.title %>">
+    </label>
+    <input type="submit" value="Update">
+</form>
