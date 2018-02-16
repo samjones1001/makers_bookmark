@@ -1,6 +1,6 @@
 <h4>Update Link</h4>
 <form action="/link/update" method="post">
-    <input type="hidden" name='existing_url' value="<%= @link.url %>">
+    <input type="hidden" name='id' value="<%= @link.id %>">
     <label for="url">
       URL:
       <input type="text" name="url" value="<%= @link.url %>">
