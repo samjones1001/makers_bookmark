@@ -4,11 +4,20 @@
 <ul>
   <% @links.each do |link| %>
     <li><a href="<%=link.url%>"><%= link.title %></a></li>
-    <form action="/link/update" method="get">
+    <ul>
+      <% link.get_comments.each do |comment| %>
+        <li><%= comment.text %></li>
+      <% end %>
+    </ul>
+    <form action="/link/<%= link.id %>/comment/new" method="get">
+      <input type="hidden" name="id" value="<%=link.id%>">
+      <button type="submit">Add Comment</button>
+    </form>
+    <form action="/link/<%= link.id %>/update" method="get">
       <input type="hidden" name="id" value="<%=link.id%>">
       <button type="submit">Update</button>
     </form>
-    <form  action='/link/delete' method="post">
+    <form  action='/link/<%= link.id %>/delete' method="post">
       <input type="hidden" name='id' value="<%=link.id%>">
       <button type="submit">Delete</button>
     </form>

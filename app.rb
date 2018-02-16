@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require './lib/link'
+require './lib/comment'
 require './database_connection_setup'
 require 'sinatra/flash'
 
@@ -8,6 +9,10 @@ class BookmarkManager < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
+    redirect '/links'
+  end
+
+  get '/links' do
     @links = Link.all
     erb :index
   end
@@ -17,20 +22,29 @@ class BookmarkManager < Sinatra::Base
     redirect '/'
   end
 
-  get '/link/update' do
-    p params
+  get '/link/:id/update' do
     @link = Link.find(params['id'])
     erb :update
   end
 
-  post '/link/update' do
+  post '/link/:id/update' do
     Link.update(params['id'], params['url'], params['title'])
     redirect '/'
   end
 
-  post '/link/delete' do
+  post '/link/:id/delete' do
     Link.delete(params['id'])
     redirect '/'
+  end
+
+  get '/link/:id/comment/new' do
+    @link = Link.find(params['id'])
+    erb :comment
+  end
+
+  post '/link/:id/comment' do
+    Comment.create(params['link_id'], params['text'])
+    redirect '/links'
   end
 
   run! if app_file == $0

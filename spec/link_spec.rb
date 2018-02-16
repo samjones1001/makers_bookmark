@@ -49,4 +49,15 @@ describe Link do
       expect(urls).to_not include('http://www.makersacademy.com')
     end
   end
+
+  describe 'get_comments' do
+    it 'returns a list of comments belonging to the link' do
+      link = Link.find('1')
+      comment = Comment.create(link.id, 'this is so lovely')
+      comment_2 = Comment.create('2', 'this is a comment for a different link')
+      comments = link.get_comments.map{ |comment| comment.text }
+      expect(comments).to include('this is so lovely')
+      expect(comment).to_not include('this is a comment for a different link')
+    end
+  end
 end

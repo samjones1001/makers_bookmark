@@ -33,6 +33,11 @@ class Link
     DatabaseConnection.query("DELETE FROM links WHERE id='#{id}';")
   end
 
+  def get_comments
+    result = DatabaseConnection.query("SELECT * FROM comments WHERE link_id=#{id}")
+    result.map{ |comment| Comment.new(comment['link_id'], comment['text']) }
+  end
+
   private
   def self.is_valid?(url)
     return true if url =~ /\A#{URI::DEFAULT_PARSER.regexp[:ABS_URI]}\z/

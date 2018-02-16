@@ -1,6 +1,6 @@
 feature 'add links' do
   scenario 'added links appear on the home page' do
-    visit('/')
+    visit('/links')
     fill_in('url', with: 'http://www.mylovelywebsite.com')
     fill_in('title', with: 'A Lovely Website')
     click_button('Add Link')
@@ -8,7 +8,7 @@ feature 'add links' do
   end
 
   scenario 'invalid links are not added to the home page' do
-    visit('/')
+    visit('/links')
     fill_in('url', with: 'not a url')
     fill_in('title', with: 'not a website')
     click_button('Add Link')

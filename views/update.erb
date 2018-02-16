@@ -1,5 +1,5 @@
 <h4>Update Link</h4>
-<form action="/link/update" method="post">
+<form action="/link/<%= @link.id %>/update" method="post">
     <input type="hidden" name='id' value="<%= @link.id %>">
     <label for="url">
       URL:

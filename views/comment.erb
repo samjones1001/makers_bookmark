@@ -1,0 +1,6 @@
+<h4>Add Comment</h4>
+<form action="/link/<%= @link.id %>/comment" method="post">
+  <input type="hidden" name="link_id" value="<%= @link.id %>">
+  <input type="text" name="text" value="">
+  <input type="submit" value="Add Comment">
+</form>
